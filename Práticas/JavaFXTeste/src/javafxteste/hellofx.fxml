@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="javafxteste.HellofxController">
+   <children>
+      <Label fx:id="lblMensagem" layoutX="132.0" layoutY="138.0" text="Vai aparecer a mensagem" />
+      <Button fx:id="btnClick" layoutX="164.0" layoutY="209.0" mnemonicParsing="false" onAction="#clicouBotao" text="Me aperte!" />
+   </children>
+</AnchorPane>
