@@ -30,12 +30,13 @@ public class TelaFatorial extends javax.swing.JFrame {
         lblFator = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        lblCalc = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         valueSpin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        valueSpin.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        valueSpin.setModel(new javax.swing.SpinnerNumberModel(0, 0, 12, 1));
         valueSpin.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 valueSpinStateChanged(evt);
@@ -44,6 +45,7 @@ public class TelaFatorial extends javax.swing.JFrame {
 
         lblFator.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblFator.setForeground(new java.awt.Color(0, 51, 255));
+        lblFator.setText("1");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("!");
@@ -51,20 +53,25 @@ public class TelaFatorial extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("=");
 
+        lblCalc.setForeground(new java.awt.Color(0, 0, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(valueSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(17, 17, 17)
-                .addComponent(lblFator, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCalc, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(valueSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(17, 17, 17)
+                        .addComponent(lblFator, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,7 +82,9 @@ public class TelaFatorial extends javax.swing.JFrame {
                     .addComponent(lblFator, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblCalc, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,22 +92,23 @@ public class TelaFatorial extends javax.swing.JFrame {
 
     private void valueSpinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_valueSpinStateChanged
         int value = Integer.parseInt(valueSpin.getValue().toString());
+        int fator = 1;
         int n = value;
-        
-        if(value == 1 || value < 1){
-            value = 1;
-        }
-        else{
+        String fatorString = String.format("%s! = ", n);
+       
+       
             
-            while(n > 1){
-                
-               value = value * (n-1);
-               --n;
-              
-            }
-            
+        while(n >= 1){     
+           fator = fator * n;
+           if(n > 1){
+               fatorString+= String.format("%sx", n);
+           }else{
+               fatorString+= String.format("%s", n);
+           }
+           --n;
         }
-        lblFator.setText(Integer.toString(value));
+        lblCalc.setText(fatorString);
+        lblFator.setText(Integer.toString(fator));
     }//GEN-LAST:event_valueSpinStateChanged
 
     /**
@@ -139,6 +149,7 @@ public class TelaFatorial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblCalc;
     private javax.swing.JLabel lblFator;
     private javax.swing.JSpinner valueSpin;
     // End of variables declaration//GEN-END:variables
